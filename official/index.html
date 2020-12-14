@@ -1,18 +1,32 @@
 <!DOCTYPE html>
 <html>
 
+<head>
+    <script language="javascript">
+        function onSubmit(){
+            let param = {
+                method:  "POST",
+                headers: { "content-type": "application/json; charset=utf-8" },
+                body:    JSON.stringify( { s: document.getElementById('idMessage').value } ),
+            };
+            fetch("http://localhost:8080/", param)
+                .then( response =>{ return response.json(); } )
+                .then( json =>{ alert(JSON.stringify(json)); } );
+        }
+    </script>
+</head>
+
 <body>
 	<h2>The message to be sent</h2>
 
 	<p>
 	<div>
-		<textarea></textarea>
+		<textarea id="idMessage"></textarea>
 	</div>
 	<div>
-		<button>submit</button>
+		<button onclick="onSubmit();">submit</button>
 	</div>
 	</p>
 </body>
 
 </html>
-
