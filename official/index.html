@@ -3,16 +3,16 @@
 
 <head>
     <script language="javascript">
-        function onSubmit(){
-            let param = {
-                method:  "POST",
-                headers: { "content-type": "application/json; charset=utf-8" },
-                body:    JSON.stringify( { s: document.getElementById('idMessage').value } ),
-            };
-            fetch("http://localhost:8080/", param)
-                .then( response =>{ return response.json(); } )
-                .then( json =>{ alert(JSON.stringify(json)); } );
-        }
+    function onSubmit(){
+        let param = {
+            method:  "POST",
+            headers: { "content-type": "application/json; charset=utf-8" },
+            body:    JSON.stringify( { s: document.getElementById('idMessage').value } ),
+        };
+        fetch("http://localhost:8080/message", param)
+            .then( response =>{ return response.json(); } )
+            .then( json =>{ alert(JSON.stringify(json)); } );
+    }
     </script>
 </head>
 
