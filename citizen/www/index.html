@@ -2,18 +2,20 @@
 <html>
 
 <head>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
 
     <script language="javascript" type="module">
-        fetch("http://localhost:8080/message").then(async function(res){
-            let obj = await res.json();
-            let messages = new Vue({
-                el: '#idMessages',
-                data: {
-                    messages: obj
-                }
+    fetch("http://localhost:8080/message").then(async function(res){
+        let obj = await res.json();
+        let messages = new Vue({
+            el: '#idMessages',
+            data: {
+                messages: obj
+            }
         });
-    });
+    }).catch(function(e){alert(e);});
     </script>
 </head>
 

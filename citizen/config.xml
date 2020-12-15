@@ -21,5 +21,8 @@
     <platform name="ios">
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
+        <!--[ CDVWebViewEngine.m:75 ]
+        [configuration setValue:@"TRUE" forKey:@"allowUniversalAccessFromFileURLs"];
+        -->
     </platform>
 </widget>
