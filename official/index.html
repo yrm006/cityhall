@@ -9,9 +9,10 @@
             headers: { "content-type": "application/json; charset=utf-8" },
             body:    JSON.stringify( { s: document.getElementById('idMessage').value } ),
         };
-        fetch("http://localhost:8080/message", param)
-            .then( response =>{ return response.json(); } )
-            .then( json =>{ alert(JSON.stringify(json)); } );
+        fetch("http://localhost:8080/message", param).then(async function(res){
+            let obj = await res.json();
+            alert( JSON.stringify(obj) );
+        });
     }
     </script>
 </head>

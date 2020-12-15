@@ -1,12 +1,29 @@
 <!DOCTYPE html>
 <html>
 
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+
+    <script language="javascript" type="module">
+        fetch("http://localhost:8080/message").then(async function(res){
+            let obj = await res.json();
+            let messages = new Vue({
+                el: '#idMessages',
+                data: {
+                    messages: obj
+                }
+        });
+    });
+    </script>
+</head>
+
 <body>
 	<h2>Messages to you</h2>
-	<ul>
-	<li>xxx yyy zzz</li>
+	<ul id="idMessages">
+    <li v-for="message in messages">
+        {{ message.sBody }}
+    </li>
 	</ul>
 </body>
 
 </html>
-
