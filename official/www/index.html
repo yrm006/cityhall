@@ -4,15 +4,16 @@
 <head>
     <script language="javascript">
     function onSubmit(){
-        let param = {
-            method:  "POST",
-            headers: { "content-type": "application/json; charset=utf-8" },
-            body:    JSON.stringify( { s: document.getElementById('idMessage').value } ),
-        };
-        fetch("http://localhost:8080/message", param).then(async function(res){
+        fetch("https://ik1-425-44513.vs.sakura.ne.jp:8080/message", 
+            {
+                method:  "POST",
+                headers: { "content-type": "application/json; charset=utf-8" },
+                body:    JSON.stringify( { s: document.getElementById('idMessage').value,u: document.getElementById('url').value } )
+            }
+        ).then(async function(res){
             let obj = await res.json();
             alert( JSON.stringify(obj) );
-        });
+        }).catch(function(e){alert(e);});
     }
     </script>
 </head>
@@ -22,7 +23,9 @@
 
 	<p>
 	<div>
-		<textarea id="idMessage"></textarea>
+        <p>メッセージ</p>
+        <textarea id="idMessage"></textarea>
+        <p>url<input type="text" id="url"></p>
 	</div>
 	<div>
 		<button onclick="onSubmit();">submit</button>
