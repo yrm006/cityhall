@@ -17,7 +17,7 @@
     </style>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
     <script language="javascript" type="module">
-        fetch("https://ik1-425-44513.vs.sakura.ne.jp:8080/message").then(async function(res){
+        fetch("url").then(async function(res){
         let obj = await res.json();
         let messages = new Vue({
             el: '#idMessages',
