@@ -1,5 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="io.cordova.hellocordova" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <!-- will not stop any calls -->
     <name>HelloCordova</name>
     <description>
         A sample Apache Cordova application that responds to the deviceready event.
@@ -8,6 +9,7 @@
         Apache Cordova Team
     </author>
     <content src="index.html" />
+    <preference name="websecurity" value="disable" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
@@ -15,6 +17,10 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
+    
+    <access Origin="*" subdomains="true"/>
+    <allow-navigation href="*"/>
+
     <platform name="android">
         <allow-intent href="market:*" />
     </platform>
