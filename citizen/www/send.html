@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            #myImage{
+                width: 400px;
+                height: auto;
+            }
+        </style>
+        <script>
+            var file;
+            var files;
+            function onSubmit(){
+                file = document.getElementsByName("file");
+                files = file[0].files[0];
+                var type = files.type;
+                if (files != ""){
+                    if (type.split( '/' )[0] == "image"){
+                        return true;
+                    }
+                    else{
+                        alert("ファイルが画像ではないので送信できませんでした。");
+                        return false;
+                    }
+                }
+                else{
+                    return true;
+                }
+            }
+            function previewImage(obj)
+            {
+                var fileReader = new FileReader();
+                fileReader.onload = (function() {
+                    document.getElementById('myImage').src = fileReader.result;
+                });
+                fileReader.readAsDataURL(obj.files[0]);
+            }
+        </script>
+    </head>
+    <body>
+        <h1>市内各所の情報をみんなで共有しましょう</h1>
+
+        <p>題名</p>
+        <form action="https://192.168.1.5:8080/information" method="POST" enctype="multipart/form-data" onsubmit="return onSubmit()">
+            <input type="text" name="title">
+            <p>詳しい情報</p>
+            <textarea name="text"></textarea>
+            <p>画像</p>
+            <input type="file" accept="image/*" name="file" onchange="previewImage(this);">
+            <img id="myImage">
+            <br>
+            <br>
+            <input type="submit" value="投稿"></button>
+        </form>
+    </body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf8">
+    <style>
+        th{
+            background-color: chartreuse;
+        }
+        tr{
+            background-color: aquamarine;
+        }
+        body{
+            background-color:white
+        }
+        img{
+            width: 300px;
+            height: auto;
+        }
+    </style>
+</head>
+
+<body>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+    <script language="javascript" type="module">
+        fetch("https://192.168.1.5:8080/information").then(async function(res){
+        let obj = await res.json();
+        console.log(obj);
+        let information = new Vue({
+            el: '#Information',
+            data: {
+                informations: obj
+            }
+        });
+    }).catch(function(e){alert(e);});
+    </script>
+
+    <h2>市民の声</h2>
+    <table id="Information">
+        <th width="200px">題名</th><th width="200px">詳しい情報</th><th width="400">画像</th>
+        <tr v-for="information in informations">
+            <td>{{ information.title }}</td><td>{{ information.text }}</td><td><template v-if="information.image != null"><img :src="'https://192.168.1.5:8080/uploads/'+information.image"></template></td>
+        </tr>
+    </table>
+</body>
+
+</html>

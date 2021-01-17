@@ -18,7 +18,6 @@
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
     
-    <access Origin="*" subdomains="true"/>
     <allow-navigation href="*"/>
 
     <platform name="android">

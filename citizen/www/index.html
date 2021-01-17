@@ -1,42 +1,64 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
+    <body>
+        <h1>電子回覧板</h1>
+        <div class="button" id="all">回覧板の情報を見る</button></div>
+        <div class="button" id="send">市内各所の情報を投稿する</div>
+        <div class="button" id="information">市内各所の情報を見る</div>
 
-<head>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta http-equiv="Content-Type" content="text/html;">
-    <style>
-        th{
-            background-color: chartreuse;
-        }
-        tr{
-            background-color: aquamarine;
-        }
-        body{
-            background-color:white
-        }
-    </style>
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
-    <script language="javascript" type="module">
-        fetch("url").then(async function(res){
-        let obj = await res.json();
-        let messages = new Vue({
-            el: '#idMessages',
-            data: {
-                messages: obj
+        <div id="main"></div>
+    </body>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf8">
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <style>
+            #main{
+                padding: 0.5em 1em;
+                margin: 2em 0;
+                background: #c6e4ff;
+                border-bottom: solid 6px #aac5de;
+                border-radius: 9px;
             }
-        });
-    }).catch(function(e){alert(e);});
-    </script>
-</head>
+            #main p {
+                margin: 0;
+                padding: 0;
+            }
 
-<body>
-    <h2>Messages to you</h2>
-    <table id="idMessages">
-        <th width="500px">内容</th><th width="300px">詳しい情報</th>
-        <tr v-for="message in messages">
-            <td>{{ message.sBody }}</td><td><a :href="message.sUrl">{{message.sUrl}}</a></td>
-        </tr>
-    </table>
-</body>
+            .button{
+                font-size: 18px;
+                display: inline-block;
+                padding: 0.5em 1em 0.3em;
+                color: #ffffff;
+                border-radius: 25px;
+                background-color: #0099ff;
+                border: none;
+                cursor: pointer;
+                margin-right: 20px;
+
+                transition: all 300ms 0s ease;
+            }
+            .button:hover{
+                background-color: aqua;
+            }
+        </style>
+        <script>
+            $("#main").hide();
+            $("#all").click(function(){
+                $('#main').load('all.html', function(){
+                    $("#main").show();
+                });
+            });
+            $("#send").click(function(){
+                $('#main').load('send.html', function(){
+                    $("#main").show();
+                });
+            });
+            $("#information").click(function(){
+                $('#main').load('all2.html', function(){
+                    $("#main").show();
+                });
+            });
+        </script>
+    </head>
 
 </html>
