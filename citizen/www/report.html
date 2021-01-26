@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>City Hall - Report</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf8">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+    <script language="javascript">
+    function onSubmit(){
+        let param = {
+            method:  "POST",
+            headers: { "content-type": "application/json; charset=utf-8" },
+            body:    JSON.stringify( { c: idContent.value, p: idPreview.src } ),
+        };
+        fetch("http://localhost:8080/report", param).then(async function(res){
+            let obj = await res.json();
+            alert( JSON.stringify(obj) );
+            if(obj.message === "OK"){
+                location.href = "index.html";
+            }
+        }).catch(function(e){alert(e);});
+    }
+
+    function onPreview(elm){
+        let fl = new FileReader();
+        fl.onload = function(e){
+            idPreview.src = e.target.result;
+        };
+        fl.readAsDataURL(elm.files[0]);
+    }
+    </script>
+</head>
+
+<body>
+    <h2>Report</h2>
+
+    <p>
+    <dl>
+        <dt>Content</dt>
+            <dd><textarea id="idContent"></textarea></dd>
+
+        <dt>Photo</dt>
+            <dd>
+                <input type="file" accept="image/*" id="idPhoto" onchange="onPreview(this);">
+                <img id="idPreview" style="width:100%; ">
+            </dd>
+
+        <dt>&nbsp;</dt>
+            <dd><button onclick="onSubmit();">submit</button></dd>
+    </dl>
+    </p>
+
+    <div style="position:fixed; right:1em; top:1em; ">
+        <button onclick="location.href='index.html';"> X Cancel </button>
+    </div>
+</body>
+
+</html>
