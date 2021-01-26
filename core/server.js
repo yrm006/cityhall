@@ -16,6 +16,16 @@ const router = new Router();{
         }
         ctx.response.body = { message: "OK" };
     });
+    router.get("/report", async function(ctx){
+        let r = null;
+
+        const db = new DB("cityhall.db");{
+            r = [...db.query("SELECT * FROM TReport order by dtCreated desc").asObjects()];
+            db.close();
+        }
+
+        ctx.response.body = r;
+    });
     router.post("/message", async function(ctx,res){
         const v = await ctx.request.body().value;
         console.log( v );

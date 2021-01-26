@@ -2,39 +2,37 @@
 <html>
 
 <head>
-    <title>City Hall: Official</title>
+    <title>City Hall: City</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf8">
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
-    <script language="javascript">
-    function onSubmit(){
-        let param = {
-            method:  "POST",
-            headers: { "content-type": "application/json; charset=utf-8" },
-            body:    JSON.stringify( { s: idMessage.value, u: idUrl.value } ),
-        };
-        fetch("http://localhost:8080/message", param).then(async function(res){
-            let obj = await res.json();
-            alert( JSON.stringify(obj) );
-        }).catch(function(e){alert(e);});
-    }
+    <script language="javascript" type="module">
+    fetch("http://localhost:8080/report").then(async function(res){
+        let obj = await res.json();
+        let reports = new Vue({
+            el: '#idReports',
+            data: {
+                reports: obj
+            }
+        });
+    }).catch(function(e){alert(e);});
     </script>
-</head>
+    </head>
 
 <body>
-    <h2>The message to be sent</h2>
+    <h2>Reports to city</h2>
 
     <p>
-    <dl>
-        <dt>Message</dt>
-            <dd><textarea id="idMessage"></textarea></dd>
-
-        <dt>URL</dt>
-            <dd><input type="text" id="idUrl"></dd>
-
-        <dt>&nbsp;</dt>
-            <dd><button onclick="onSubmit();">submit</button></dd>
-    </dl>
+    <ul id="idReports">
+        <li v-for="report in reports">
+            <img style="float:right; width:33%; " :src="report.sPhoto">
+            {{report.sContent}}
+        </li>
+    </ul>
     </p>
+
+    <div style="position:fixed; right:1em; bottom:1em; ">
+        <button style="font-size:120%; " onclick="location.href='message.html';">Message</button>
+    </div>
 </body>
 
 </html>
