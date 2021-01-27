@@ -10,6 +10,7 @@ const router = new Router();{
     });
     router.post("/report", async function(ctx,res){
         const v = await ctx.request.body().value;
+        console.log( v.c );
         const db = new DB("cityhall.db");{
             db.query("INSERT INTO TReport (sContent,sPhoto) VALUES (?,?)", [v.c,v.p]);
             db.close();
@@ -18,12 +19,11 @@ const router = new Router();{
     });
     router.get("/report", async function(ctx){
         let r = null;
-
+        console.log( "/report" );
         const db = new DB("cityhall.db");{
             r = [...db.query("SELECT * FROM TReport order by dtCreated desc").asObjects()];
             db.close();
         }
-
         ctx.response.body = r;
     });
     router.post("/message", async function(ctx,res){
@@ -37,12 +37,11 @@ const router = new Router();{
     });
     router.get("/message", async function(ctx){
         let r = null;
-
+        console.log( "/message" );
         const db = new DB("cityhall.db");{
             r = [...db.query("SELECT * FROM TMessage order by dtCreated desc").asObjects()];
             db.close();
         }
-
         ctx.response.body = r;
     });
 }
