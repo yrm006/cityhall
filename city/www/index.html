@@ -6,7 +6,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf8">
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
     <script language="javascript" type="module">
-    fetch("http://localhost:8080/report").then(async function(res){
+    fetch("http://192.168.1.3:8080/report").then(async function(res){
         let obj = await res.json();
         let reports = new Vue({
             el: '#idReports',
@@ -19,6 +19,13 @@
     </head>
 
 <body>
+    <script>
+        function Reload() {
+            // reloadメソッドによりページをリロード
+            window.location.reload();
+        }
+    </script>
+    <button onclick="Reload()">再読み込み</button>
     <h2>Reports from citizens</h2>
 
     <p>
