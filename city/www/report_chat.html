@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <title>City Hall: chat</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf8">
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+
+        <script language="javascript" type="module">
+            fetch("http://localhost:8080/report_chat").then(async function(res){
+                let obj = await res.json();
+                console.log(obj);
+                let chats = new Vue({
+                    el: '#idChats',
+                    data: {
+                        chats: obj
+                    }
+                });
+            }).catch(function(e){alert(e);});
+        </script>
+
+        <script>
+            function onSubmit(){
+                let param = {
+                    method:  "POST",
+                    headers: { "content-type": "application/json; charset=utf-8" },
+                    body:    JSON.stringify( { s: idMessage.value } ),
+                };
+                fetch("http://localhost:8080/report_chat_city", param).then(async function(res){
+                    let obj = await res.json();
+                    alert( JSON.stringify(obj) );
+                    if(obj.message === "OK"){
+                        location.href = "index.html";
+                    }
+                }).catch(function(e){alert(e);});
+            }
+        </script>
+    </head>
+    <body>
+        <h1>chat</h1>
+        <ul id="idChats">
+            <li style="clear:both; " v-for="chat in chats">
+                <!--<img style="float:right; width:33%; " :src="report.sPhoto">-->
+                <div v-if="chat.bCity==1" style="background: #88f;">
+                    {{chat.sBody}}
+                </div>
+                <div v-else>
+                    {{chat.sBody}}
+                </div>
+            </li>
+        </ul>
+        
+        <h1>write</h1>
+
+        <dt>Message</dt>
+        <dd><textarea id="idMessage"></textarea></dd>
+
+        <dt>&nbsp;</dt>
+            <dd><button onclick="onSubmit();">submit</button></dd>
+        </dl>
+        <div style="position:fixed; right:1em; top:1em; ">
+            <button onclick="location.href='index.html';"> back </button>
+        </div>
+    </body>
+</html>

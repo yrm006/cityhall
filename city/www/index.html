@@ -19,13 +19,10 @@
     </head>
 
 <body>
-    <script>
-        function Reload() {
-            // reloadメソッドによりページをリロード
-            window.location.reload();
-        }
-    </script>
-    <button onclick="Reload()">再読み込み</button>
+    <div style="position:fixed; right:1em; top:1em; ">
+        <button style="font-size:80%; " onclick="window.location.reload();">Reload</button>
+    </div>
+
     <h2>Reports from citizens</h2>
 
     <p>
@@ -33,6 +30,7 @@
         <li style="clear:both; " v-for="report in reports">
             <img style="float:right; width:33%; " :src="report.sPhoto">
             {{report.sContent}}
+            <button onclick="location.href='report_chat.html';">chat</button>
         </li>
     </ul>
     </p>
