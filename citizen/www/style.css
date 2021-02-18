@@ -2,6 +2,8 @@
 
 body {
   font-family: 'Noto Sans JP', sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
 button {
@@ -20,4 +22,8 @@ button::active {
 h1 {
   font-size: x-large;
   text-align: center;
+  width: 100%;
+  padding: 4px;
+  background: #91ABFF;
+  color: #FFFFFF;
 }
