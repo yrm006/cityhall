@@ -16,9 +16,10 @@ button {
 
 h1 {
   position: relative;
-  font-size: x-large;
+  font-size: 100%;
   top: 0px;
   width: 100%;
+  height: 5%;
   margin: 0;
   padding: 10px 6px;
   background: #7187EF;
