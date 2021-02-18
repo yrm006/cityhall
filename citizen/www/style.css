@@ -9,7 +9,7 @@ body {
 button {
   background: #E0E0E0;
   border: none;
-  box-shadow: 2px 2px 2px rgba(0,0,0,0.4);
+  box-shadow: 1px 1px 1px rgba(0,0,0,0.4);
   border-radius: 4px;
   padding: 6px;
 }
@@ -19,8 +19,8 @@ h1 {
   font-size: x-large;
   top: 0px;
   width: 100%;
-  margin: none;
-  padding: 10px 0px 10px 0px;
+  margin: 0;
+  padding: 10px 4px;
   background: #7187EF;
   color: #FFFFFF;
 }
