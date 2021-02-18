@@ -15,16 +15,13 @@ button {
   padding: 6px;
 }
 
-button::active {
-  box-shadow: inset 2px 2px 2px rgba(0,0,0,0.4);
-}
-
 h1 {
   font-size: x-large;
   text-align: center;
   top: 0px;
   width: 100%;
-  padding: 10px 0px 6px 0px;
+  margin: none;
+  padding: 10px 0px 10px 0px;
   background: #7187EF;
   color: #FFFFFF;
 }
