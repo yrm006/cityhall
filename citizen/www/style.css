@@ -15,3 +15,7 @@ button {
 button::active {
   box-shadow: inset 4px;
 }
+
+h1 {
+  font-size: xx-large;
+}
