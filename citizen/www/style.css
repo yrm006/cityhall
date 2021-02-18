@@ -22,8 +22,9 @@ button::active {
 h1 {
   font-size: x-large;
   text-align: center;
+  top: 0px;
   width: 100%;
-  padding: 4px;
-  background: #91ABFF;
+  padding: 10px 0px 6px 0px;
+  background: #7187EF;
   color: #FFFFFF;
 }
