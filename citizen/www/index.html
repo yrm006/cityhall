@@ -20,14 +20,12 @@
 </head>
 
 <body>
+    <div style="position:fixed; right:1em; top:1em; ">
+        <button style="font-size:80%; " onclick="window.location.reload();">Reload</button>
+    </div>
+
     <h2>Messages to you</h2>
-    <script>
-        function Reload() {
-            // reloadメソッドによりページをリロード
-            window.location.reload();
-        }
-    </script>
-    <button onclick="Reload()">再読み込み</button>
+
     <p>
     <ul id="idMessages">
         <li v-for="message in messages"><a :href="message.sUrl">{{message.sBody}}</a></li>
