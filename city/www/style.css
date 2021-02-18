@@ -15,7 +15,7 @@ button {
 }
 
 h1 {
-  position: absolute;
+  position: relative;
   font-size: x-large;
   top: 0px;
   width: 100%;
