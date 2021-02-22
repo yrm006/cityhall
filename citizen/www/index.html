@@ -27,14 +27,15 @@
         });
     }).catch(function(e){alert(e);});
     </script>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <div style="position:fixed; right:1em; top:1em; ">
+    <div style="position:fixed; right:1em; top:1em; z-index:99;">
         <button style="font-size:80%; " onclick="window.location.reload();">Reload</button>
     </div>
 
-    <h2>Messages to you</h2>
+    <h1>Messages to you</h1>
     <p>
     <ul id="idMessages">
         <li v-for="message in messages"><a :href="message.sUrl">{{message.sBody}}</a></li>
