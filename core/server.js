@@ -26,6 +26,38 @@ const router = new Router();{
         }
         ctx.response.body = r;
     });
+    router.get("/report_chat", async function(ctx){
+        let r = null;
+        let p = Number.parseInt(ctx.request.url.searchParams.get("p"));
+        console.log( "/report_chat:" + p );
+        const db = new DB("cityhall.db");{
+            r = [...db.query("SELECT * FROM TReportChat where pReport=? order by dtCreated desc",[p]).asObjects()];
+            db.close();
+        }
+        console.log(r);
+        ctx.response.body = r;
+    });
+
+    router.post("/report_chat_city", async function(ctx,res){
+        const v = await ctx.request.body().value;
+        console.log( v );
+        let p = Number.parseInt(ctx.request.url.searchParams.get("p"));
+        const db = new DB("cityhall.db");{
+            db.query("INSERT INTO TReportChat (sBody,pReport,bCity) VALUES (?,?,?)", [v.s,p,1]);
+            db.close();
+        }
+        ctx.response.body = { message: "OK" };
+    });
+    router.post("/report_chat_citizen", async function(ctx,res){
+        const v = await ctx.request.body().value;
+        console.log( v );
+        let p = Number.parseInt(ctx.request.url.searchParams.get("p"));
+        const db = new DB("cityhall.db");{
+            db.query("INSERT INTO TReportChat (sBody,pReport,bCity) VALUES (?,?,?)", [v.s,p,0]);
+            db.close();
+        }
+        ctx.response.body = { message: "OK" };
+    });
     router.post("/message", async function(ctx,res){
         const v = await ctx.request.body().value;
         console.log( v );

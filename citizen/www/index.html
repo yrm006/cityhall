@@ -16,6 +16,16 @@
             }
         });
     }).catch(function(e){alert(e);});
+
+    fetch("http://localhost:8080/report").then(async function(res){
+        let obj = await res.json();
+        let reports = new Vue({
+            el: '#idReports',
+            data: {
+                reports: obj
+            }
+        });
+    }).catch(function(e){alert(e);});
     </script>
 </head>
 
@@ -25,13 +35,22 @@
     </div>
 
     <h2>Messages to you</h2>
-
     <p>
     <ul id="idMessages">
         <li v-for="message in messages"><a :href="message.sUrl">{{message.sBody}}</a></li>
     </ul>
     </p>
 
+    <h2>All Reports</h2>
+    <p>
+    <ul id="idReports">
+        <li style="clear:both; " v-for="report in reports">
+            <img style="float:right; width:16%; " :src="report.sPhoto">
+            <a :href="'report_chat.html?p='+report.id">{{report.sContent}}</a>
+        </li>
+    </ul>
+    </p>
+    
     <div style="position:fixed; right:1em; bottom:1em; ">
         <button style="font-size:120%; " onclick="location.href='report.html';">Report!</button>
     </div>
