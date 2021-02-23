@@ -8,7 +8,7 @@ A communication system for the city.
 
 ### core/
 
-This is the server system. 
+This is the server system.
 
 これはサーバーシステムです。
 
