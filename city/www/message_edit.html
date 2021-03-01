@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>City Hall: City</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf8">
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+        <script language="javascript" type="module">
+            var result = {};
+            if( 1 < window.location.search.length )
+            {
+                // 最初の1文字 (?記号) を除いた文字列を取得する
+                var query = window.location.search.substring( 1 );
+
+                // クエリの区切り記号 (&) で文字列を配列に分割する
+                var parameters = query.split( '&' );
+
+                for( var i = 0; i < parameters.length; i++ )
+                {
+                    // パラメータ名とパラメータ値に分割する
+                    var element = parameters[ i ].split( '=' );
+
+                    var paramName = decodeURIComponent( element[ 0 ] );
+                    var paramValue = decodeURIComponent( element[ 1 ] );
+
+                    // パラメータ名をキーとして連想配列に追加する
+                    result[ paramName ] = paramValue;
+                }
+            }
+            var tid = result["tId"];
+            let param = {
+                method:  "POST",
+                headers: { "content-type": "application/json; charset=utf-8" },
+                body:    JSON.stringify( { tId: tid, } ),
+            };
+            fetch("http://localhost:8080/message_edit",param).then(async function(res){
+                let obj = await res.json();
+                let objs = obj.value
+                let message = new Vue({
+                    el: '#idMessage',
+                    data: {
+                        message: objs
+                    }
+                });
+                document.getElementById("tid").value = objs.id;
+            }).catch(function(e){alert(e);});
+        </script>
+        <script language="javascript">
+            function onSubmit(){
+                let param2 = {
+                    method:  "POST",
+                    headers: { "content-type": "application/json; charset=utf-8" },
+                    body:    JSON.stringify( { s: idMessage_w.value, u: idUrl.value, tId: Number(document.getElementById("tid").value), } ),
+                }; 
+                fetch("http://localhost:8080/message_edit_done", param2).then(async function(res){
+                    let obj = await res.json();
+                    alert( JSON.stringify(obj) );
+                    if(obj.message === "OK"){
+                        location.href = "index.html";
+                    }
+                }).catch(function(e){alert(e);});
+            }
+        </script>
+    </head>
+    <body>
+        <h1>Message Edit</h1>
+        <p>
+            <dl id="idMessage">
+                <dt>Message</dt>
+                    <dd><textarea id="idMessage_w">{{ message.sBody }}</textarea></dd>
+                    <input type="hidden" id="tid">
+                <dt>URL</dt>
+                    <dd><input type="text" id="idUrl" :value="message.sUrl"></dd>
+        
+                <dt>&nbsp;</dt>
+                    <dd><button onclick="onSubmit();">submit</button></dd>
+            </dl>
+        </p>
+    </body>
+</html>
