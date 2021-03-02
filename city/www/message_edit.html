@@ -4,8 +4,8 @@
 <head>
     <title>City Hall: City</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf8">
+    <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
-
     <script language="javascript" type="module">
     fetch("http://localhost:8080/message_edit"+location.search).then(async function(res){
         let obj = await res.json();
@@ -17,7 +17,6 @@
         });
     }).catch(function(e){alert(e);});
     </script>
-
     <script language="javascript">
     function onSubmit(){
         let param = {
@@ -34,8 +33,6 @@
         }).catch(function(e){alert(e);});
     }
     </script>
-
-    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>

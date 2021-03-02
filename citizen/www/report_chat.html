@@ -5,38 +5,36 @@
     <title>City Hall - Report Chat</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf8">
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
-
-    <script language="javascript" type="module">
-        fetch("http://localhost:8080/report_chat"+location.search).then(async function(res){
-            let obj = await res.json();
-            console.log(obj);
-            let chats = new Vue({
-                el: '#idChats',
-                data: {
-                    chats: obj
-                }
-            });
-        }).catch(function(e){alert(e);});
-    </script>
-
-    <script>
-        function onSubmit(){
-            let param = {
-                method:  "POST",
-                headers: { "content-type": "application/json; charset=utf-8" },
-                body:    JSON.stringify( { s: idChat.value } ),
-            };
-            fetch("http://localhost:8080/report_chat_citizen"+location.search, param).then(async function(res){
-                let obj = await res.json();
-                alert( JSON.stringify(obj) );
-                if(obj.message === "OK"){
-                    location.reload();
-                }
-            }).catch(function(e){alert(e);});
-        }
-    </script>
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+    <script language="javascript" type="module">
+    fetch("http://localhost:8080/report_chat"+location.search).then(async function(res){
+        let obj = await res.json();
+        console.log(obj);
+        let chats = new Vue({
+            el: '#idChats',
+            data: {
+                chats: obj
+            }
+        });
+    }).catch(function(e){alert(e);});
+    </script>
+    <script language="javascript">
+    function onSubmit(){
+        let param = {
+            method:  "POST",
+            headers: { "content-type": "application/json; charset=utf-8" },
+            body:    JSON.stringify( { s: idChat.value } ),
+        };
+        fetch("http://localhost:8080/report_chat_citizen"+location.search, param).then(async function(res){
+            let obj = await res.json();
+            alert( JSON.stringify(obj) );
+            if(obj.message === "OK"){
+                location.reload();
+            }
+        }).catch(function(e){alert(e);});
+    }
+    </script>
 </head>
 
 <body>
