@@ -76,6 +76,28 @@ const router = new Router();{
         }
         ctx.response.body = r;
     });
+
+    router.get("/message_edit", async function(ctx,res){
+        let r = null;
+        console.log( "/message_edit" );
+        let id = Number.parseInt(ctx.request.url.searchParams.get("id"));
+        const db = new DB("cityhall.db");{
+            r = [...db.query("SELECT * FROM TMessage WHERE id=?",[id]).asObjects()];
+            db.close();
+        }
+        ctx.response.body = r[0];
+    });
+
+    router.post("/message_edit", async function(ctx,res){
+        const v = await ctx.request.body().value;
+        console.log( v );
+        let id = Number.parseInt(ctx.request.url.searchParams.get("id"));
+        const db = new DB("cityhall.db");{
+            db.query("UPDATE TMessage SET sBody=?,sUrl=? WHERE id=?", [v.s,v.u,id]);
+            db.close();
+        }
+        ctx.response.body = { message: "OK" };
+    });
 }
 
 const app = new Application();{
