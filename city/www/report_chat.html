@@ -25,7 +25,7 @@
             headers: { "content-type": "application/json; charset=utf-8" },
             body:    JSON.stringify( { s: idChat.value } ),
         };
-        fetch("http://localhost:8080/report_chat_city"+location.search, param).then(async function(res){
+        fetch("http://localhost:8080/report_chat"+location.search, param).then(async function(res){
             let obj = await res.json();
             alert( JSON.stringify(obj) );
             if(obj.message === "OK"){

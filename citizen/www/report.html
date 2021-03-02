@@ -14,7 +14,7 @@
             headers: { "content-type": "application/json; charset=utf-8" },
             body:    JSON.stringify( { c: idContent.value, p: idPreview.src } ),
         };
-        fetch("http://localhost:8080/report", param).then(async function(res){
+        fetch("http://localhost:8081/report", param).then(async function(res){
             let obj = await res.json();
             alert( JSON.stringify(obj) );
             if(obj.message === "OK"){
