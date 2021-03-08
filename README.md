@@ -12,12 +12,11 @@ This is the server system.
 
 これはサーバーシステムです。
 
-[city side server]
 ```
+[city side]
 % deno run --allow-net --allow-read --allow-write server-city.js
-```
-[citizen side server]
-```
+
+[citizen side]
 % deno run --allow-net --allow-read --allow-write server-citizen.js
 ```
 
