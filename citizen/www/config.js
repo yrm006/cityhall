@@ -1,0 +1,1 @@
+var ip="localhost";

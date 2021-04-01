@@ -5,9 +5,11 @@
     <title>City Hall</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf8">
+    <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+    <script src="config.js"></script>
     <script language="javascript" type="module">
-    fetch("http://localhost:8080/message").then(async function(res){
+    fetch("http://"+ ip + ":8081/message").then(async function(res){
         let obj = await res.json();
         let messages = new Vue({
             el: '#idMessages',
@@ -17,7 +19,7 @@
         });
     }).catch(function(e){alert(e);});
 
-    fetch("http://localhost:8080/report").then(async function(res){
+    fetch("http://"+ ip + ":8081/report").then(async function(res){
         let obj = await res.json();
         let reports = new Vue({
             el: '#idReports',
@@ -27,7 +29,6 @@
         });
     }).catch(function(e){alert(e);});
     </script>
-    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -46,7 +47,7 @@
     <p>
     <ul id="idReports">
         <li style="clear:both; " v-for="report in reports">
-            <img style="float:right; width:16%; " :src="report.sPhoto">
+            <img style="float:right; width:55%; " :src="report.sPhoto">
             <a :href="'report_chat.html?p='+report.id">{{report.sContent}}</a>
         </li>
     </ul>
