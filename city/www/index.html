@@ -4,19 +4,11 @@
 <head>
     <title>City Hall: City</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf8">
+    <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+    <script src="config.js"></script>
     <script language="javascript" type="module">
-    fetch("http://localhost:8080/report").then(async function(res){
-        let obj = await res.json();
-        let reports = new Vue({
-            el: '#idReports',
-            data: {
-                reports: obj
-            }
-        });
-    }).catch(function(e){alert(e);});
-
-    fetch("http://localhost:8080/message").then(async function(res){
+    fetch("http://"+ ip +":8080/message").then(async function(res){
         let obj = await res.json();
         let messages = new Vue({
             el: '#idMessages',
@@ -26,9 +18,17 @@
         });
     }).catch(function(e){alert(e);});
 
+    fetch("http://"+ ip +":8080/report").then(async function(res){
+        let obj = await res.json();
+        let reports = new Vue({
+            el: '#idReports',
+            data: {
+                reports: obj
+            }
+        });
+    }).catch(function(e){alert(e);});
     </script>
-    <link rel="stylesheet" href="style.css">
-    </head>
+</head>
 
 <body>
     <div style="position:fixed; right:1em; top:1em; z-index:99;">
@@ -36,14 +36,16 @@
     </div>
 
     <h1>Messages</h1>
-
     <p>
     <ul id="idMessages">
-        <li v-for="message in messages"><pre><a :href="message.sUrl">{{message.sBody}}</a>　<a :href="'message_edit.html?tId='+message.id">編集</a></pre></li>
+        <li v-for="message in messages">
+            <a :href="message.sUrl">{{message.sBody}}</a>
+            <a :href="'message_edit.html?id='+message.id">[ Edit ]</a>
+        </li>
     </ul>
     </p>
-    <h1>Reports from citizens</h1>
 
+    <h1>Reports from citizens</h1>
     <p>
     <ul id="idReports">
         <li style="clear:both; " v-for="report in reports">

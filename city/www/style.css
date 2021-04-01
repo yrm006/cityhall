@@ -25,3 +25,15 @@ h1 {
   color: #FFFFFF;
   box-sizing: border-box;
 }
+
+#all_map{
+  border-radius: 20px;
+  position: relative;
+  top: 0px;
+  width: 50%;
+  margin: 0;
+  padding: 1px 0.5px;
+  background: #7187EF;
+  color: #FFFFFF;
+  box-sizing: border-box;
+}
