@@ -34,8 +34,8 @@
 
     function onPosition(){
         navigator.geolocation.getCurrentPosition(function(pos){
-            elmIdo.value = pos.coords.latitude;
-            elmKeido.value = pos.coords.longitude;
+            elmLat.value = pos.coords.latitude;
+            elmLon.value = pos.coords.longitude;
         });
     };
     </script>
