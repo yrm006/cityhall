@@ -6,8 +6,9 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf8">
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+    <script src="config.js"></script>
     <script language="javascript" type="module">
-    fetch("http://localhost:8080/message_edit"+location.search).then(async function(res){
+    fetch(url + "message_edit"+location.search).then(async function(res){
         let obj = await res.json();
         let message = new Vue({
             el: '#idMessageForm',
@@ -24,7 +25,7 @@
             headers: { "content-type": "application/json; charset=utf-8" },
             body:    JSON.stringify( { s: idMessage.value, u: idUrl.value } ),
         };
-        fetch("http://localhost:8080/message_edit"+location.search, param).then(async function(res){
+        fetch(url + "message_edit"+location.search, param).then(async function(res){
             let obj = await res.json();
             alert( JSON.stringify(obj) );
             if(obj.message === "OK"){
