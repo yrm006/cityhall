@@ -1,36 +1,39 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
 
-        <link rel="stylesheet" href="style.css">
+<head>
+    <meta charset="utf-8">
 
-        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.0/dist/leaflet.css" />
-        <script src="https://unpkg.com/leaflet@1.3.0/dist/leaflet.js"></script>
-        <script>
-            function init() {
-                // URLを取得
-                var url = new URL(window.location.href);
+    <link rel="stylesheet" href="style.css">
 
-                // URLSearchParamsオブジェクトを取得
-                var params = url.searchParams;
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.0/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.3.0/dist/leaflet.js"></script>
+    <script>
+        function init() {
+            // URLを取得
+            var url = new URL(window.location.href);
 
-                console.log(params);
+            // URLSearchParamsオブジェクトを取得
+            var params = url.searchParams;
 
-                //地図を表示するdiv要素のidを設定
-                var map = L.map('mapcontainer');
-                //地図の中心とズームレベルを指定
-                map.setView([params.get('ido'), params.get('keido')], 5);
-                //表示するタイルレイヤのURLとAttributionコントロールの記述を設定して、地図に追加する
+            console.log(params);
 
-                L.marker([params.get('ido'), params.get('keido')]).addTo(map).bindPopup("<b>この場所で投稿されました。</b>").openPopup();;
+            //地図を表示するdiv要素のidを設定
+            var map = L.map('mapcontainer');
+            //地図の中心とズームレベルを指定
+            map.setView([params.get('ido'), params.get('keido')], 5);
+            //表示するタイルレイヤのURLとAttributionコントロールの記述を設定して、地図に追加する
 
-                L.tileLayer('http://cyberjapandata.gsi.go.jp/xyz/ort/{z}/{x}/{y}.jpg', {
-                }).addTo(map);
-            }
-  </script>
-    </head>
-    <body onload="init()">
-        <div id="mapcontainer" style="width:600px;height:300px"></div>
-    </body>
+            L.marker([params.get('ido'), params.get('keido')]).addTo(map).bindPopup("<b>この場所で投稿されました。</b>").openPopup();;
+
+            L.tileLayer('http://cyberjapandata.gsi.go.jp/xyz/ort/{z}/{x}/{y}.jpg', {
+            }).addTo(map);
+        }
+    </script>
+</head>
+
+<body onload="init()">
+    <div id="mapcontainer" style="width:600px;height:300px"></div>
+</body>
+
 </html>

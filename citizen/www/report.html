@@ -13,7 +13,7 @@
         let param = {
             method:  "POST",
             headers: { "content-type": "application/json; charset=utf-8" },
-            body:    JSON.stringify( { c: idContent.value, p: idPreview.src, ido: document.getElementById("ido").value, keido: document.getElementById("keido").value, } ),
+            body:    JSON.stringify( { c: idContent.value, p: idPreview.src, lat: elmLat.value, lon: elmLon.value, } ),
         };
         fetch(url + "report", param).then(async function(res){
             let obj = await res.json();
@@ -58,8 +58,8 @@
         <dt>Location</dt>
             <dd>
                 <button onclick="onPosition();">Get from GPS</button>
-                Lat<input type="text" style="width:3em; " id="elmIdo">
-                Lon<input type="text" style="width:3em; " id="elmKeido">
+                Lat<input type="text" style="width:3em; " id="elmLat">
+                Lon<input type="text" style="width:3em; " id="elmLon">
             </dd>
 
         <dt>&nbsp;</dt>
