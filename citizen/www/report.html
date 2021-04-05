@@ -13,7 +13,7 @@
         let param = {
             method:  "POST",
             headers: { "content-type": "application/json; charset=utf-8" },
-            body:    JSON.stringify( { c: idContent.value, p: idPreview.src } ),
+            body:    JSON.stringify( { c: idContent.value, p: idPreview.src, ido: document.getElementById("ido").value, keido: document.getElementById("keido").value, } ),
         };
         fetch(url + "report", param).then(async function(res){
             let obj = await res.json();
@@ -31,6 +31,13 @@
         };
         fl.readAsDataURL(elm.files[0]);
     }
+
+    function onPosition(){
+        navigator.geolocation.getCurrentPosition(function(pos){
+            elmIdo.value = pos.coords.latitude;
+            elmKeido.value = pos.coords.longitude;
+        });
+    };
     </script>
 </head>
 
@@ -46,6 +53,13 @@
             <dd>
                 <input type="file" accept="image/*" id="idPhoto" onchange="onPreview(this);">
                 <img id="idPreview" style="width:100%; ">
+            </dd>
+
+        <dt>Location</dt>
+            <dd>
+                <button onclick="onPosition();">Get from GPS</button>
+                Lat<input type="text" style="width:3em; " id="elmIdo">
+                Lon<input type="text" style="width:3em; " id="elmKeido">
             </dd>
 
         <dt>&nbsp;</dt>

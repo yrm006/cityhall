@@ -40,7 +40,7 @@ const router = new Router();{
         const v = await ctx.request.body().value;
         console.log( v.c );
         const db = new DB("cityhall.db");{
-            db.query("INSERT INTO TReport (sContent,sPhoto) VALUES (?,?)", [v.c,v.p]);
+            db.query("INSERT INTO TReport (sContent,sPhoto,rLat,rLon) VALUES (?,?,?,?)", [v.c,v.p,v.lat,v.lon]);
             db.close();
         }
         ctx.response.body = { message: "OK" };
