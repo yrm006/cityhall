@@ -9,28 +9,28 @@ const router = new Router();{
         ctx.response.body = { message: "cityhall ver 0.2.0" };
     });
 
-    router.get("/message", async function(ctx){
+    router.get("/messages", async function(ctx){
         let r = null;
-        console.log( "/message" );
+        console.log( "/messages" );
         const db = new DB("cityhall.db");{
             r = [...db.query("SELECT * FROM TMessage order by dtCreated desc").asObjects()];
             db.close();
         }
         ctx.response.body = r;
     });
-    router.get("/report", async function(ctx){
+    router.get("/reports", async function(ctx){
         let r = null;
-        console.log( "/report" );
+        console.log( "/reports" );
         const db = new DB("cityhall.db");{
             r = [...db.query("SELECT * FROM TReport order by dtCreated desc").asObjects()];
             db.close();
         }
         ctx.response.body = r;
     });
-    router.get("/report_one", async function(ctx){
+    router.get("/report", async function(ctx){
         let r = null;
         let p = Number.parseInt(ctx.request.url.searchParams.get("p"));
-        console.log( "/report_one:" + p );
+        console.log( "/report:" + p );
         const db = new DB("cityhall.db");{
             r = [...db.query("SELECT * FROM TReport where id=?", [p]).asObjects()];
             db.close();

@@ -10,7 +10,6 @@
     <script language="javascript" type="module">
     fetch(url + "report_chat"+location.search).then(async function(res){
         let obj = await res.json();
-        console.log(obj);
         let chats = new Vue({
             el: '#idChats',
             data: {
@@ -18,9 +17,8 @@
             }
         });
     }).catch(function(e){alert(e);});
-    fetch(url + "report_one"+location.search).then(async function(res){
+    fetch(url + "report"+location.search).then(async function(res){
         let obj = await res.json();
-        console.log(obj);
         let chats = new Vue({
             el: '#idReport',
             data: {

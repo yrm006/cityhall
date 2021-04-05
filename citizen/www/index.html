@@ -9,7 +9,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
     <script src="config.js"></script>
     <script language="javascript" type="module">
-    fetch(url + "message").then(async function(res){
+    fetch(url + "messages").then(async function(res){
         let obj = await res.json();
         let messages = new Vue({
             el: '#idMessages',
@@ -19,7 +19,7 @@
         });
     }).catch(function(e){alert(e);});
 
-    fetch(url + "report").then(async function(res){
+    fetch(url + "reports").then(async function(res){
         let obj = await res.json();
         let reports = new Vue({
             el: '#idReports',
