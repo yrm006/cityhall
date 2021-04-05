@@ -26,6 +26,16 @@ const router = new Router();{
         }
         ctx.response.body = r;
     });
+    router.get("/report_one", async function(ctx){
+        let r = null;
+        let p = Number.parseInt(ctx.request.url.searchParams.get("p"));
+        console.log( "/report_one:" + p );
+        const db = new DB("cityhall.db");{
+            r = [...db.query("SELECT * FROM TReport where id=?", [p]).asObjects()];
+            db.close();
+        }
+        ctx.response.body = r[0];
+    });
     router.post("/report", async function(ctx,res){
         const v = await ctx.request.body().value;
         console.log( v.c );

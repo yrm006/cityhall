@@ -18,6 +18,16 @@
             }
         });
     }).catch(function(e){alert(e);});
+    fetch(url + "report_one"+location.search).then(async function(res){
+        let obj = await res.json();
+        console.log(obj);
+        let chats = new Vue({
+            el: '#idReport',
+            data: {
+                report: obj
+            }
+        });
+    }).catch(function(e){alert(e);});
     </script>
     <script language="javascript">
     function onSubmit(){
@@ -39,6 +49,12 @@
 
 <body>
     <h1>Report Chat</h1>
+
+    <div id="idReport">
+        <p>{{report.sContent}}</p>
+        <p><img :src="report.sPhoto" style="height:8em; "></p>
+    </div>
+
     <ul id="idChats">
         <li style="clear:both; " v-for="chat in chats">
             <!--<img style="float:right; width:33%; " :src="report.sPhoto">-->
@@ -50,13 +66,15 @@
             </div>
         </li>
     </ul>
-    
-    <dt>Chat</dt>
-    <dd><input type="text" id="idChat"></dd>
 
-    <dt>&nbsp;</dt>
-        <dd><button onclick="onSubmit();">submit</button></dd>
+    <dl>
+        <dt>Chat</dt>
+            <dd><input type="text" id="idChat"></dd>
+
+        <dt>&nbsp;</dt>
+            <dd><button onclick="onSubmit();">submit</button></dd>
     </dl>
+
     <div style="position:fixed; right:1em; top:1em; ">
         <button onclick="location.href='index.html';"> back </button>
     </div>
